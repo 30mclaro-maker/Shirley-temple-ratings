@@ -5,184 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shirley Temple Reviews</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(to bottom right, #fff1f2, #fef9c3);
-    }
-  </style>
 </head>
-<body class="text-gray-900">
-  <header class="w-full sticky top-0 z-20 bg-white/60 backdrop-blur-md shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-      <h1 class="text-xl font-bold text-rose-600">Shirley Temple Reviews</h1>
-      <nav class="space-x-3">
-        <button onclick="showSection('reviews')" class="px-3 py-1 rounded-md bg-rose-100">Reviews</button>
-        <button onclick="showSection('gallery')" class="px-3 py-1 rounded-md hover:bg-gray-100">Gallery</button>
-        <button onclick="showSection('info')" class="px-3 py-1 rounded-md hover:bg-gray-100">About Me</button>
-        <button onclick="openPasswordModal()" class="ml-3 px-3 py-1 rounded-md bg-rose-500 text-white hover:opacity-95">Add Post</button>
+<body class="bg-gradient-to-r from-pink-200 via-rose-100 to-red-200 min-h-screen font-sans text-gray-800">
+  <header class="bg-rose-500 text-white shadow-lg">
+    <div class="container mx-auto flex justify-between items-center p-6">
+      <h1 class="text-3xl font-bold">Shirley Temple Reviews</h1>
+      <nav>
+        <ul class="flex space-x-6 text-lg">
+          <li><a href="#reviews" class="hover:underline">Reviews</a></li>
+          <li><a href="#gallery" class="hover:underline">Gallery</a></li>
+          <li><a href="#about" class="hover:underline">About Me</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
-  <main class="pt-6 pb-12">
+  <main class="container mx-auto py-12 px-6">
     <!-- Reviews Section -->
-    <section id="reviews" class="max-w-5xl mx-auto p-6">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-2xl font-semibold">Reviews</h2>
-        <div id="review-count" class="text-sm text-gray-600"></div>
+    <section id="reviews" class="mb-16">
+      <h2 class="text-2xl font-bold text-rose-600 mb-6">Reviews</h2>
+      <div id="reviewsList" class="grid gap-6"></div>
+      <div class="mt-6">
+        <button onclick="showPasswordPrompt()" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl shadow-md">Add Review</button>
       </div>
-      <div id="review-form" class="hidden mb-6 p-4 bg-white/70 rounded-2xl shadow-inner">
-        <h3 class="font-semibold mb-2">Write a review</h3>
-        <label class="block mb-2">
-          <div class="text-xs text-gray-600">Title</div>
-          <input id="title" class="w-full rounded-md p-2 border" />
-        </label>
-        <label class="block mb-2">
-          <div class="text-xs text-gray-600">Body</div>
-          <textarea id="body" class="w-full rounded-md p-2 border" rows="3"></textarea>
-        </label>
-        <label class="block mb-4">
-          <div class="text-xs text-gray-600">Rating</div>
-          <select id="rating" class="rounded-md p-2 border">
-            <option value="5">5 / 5</option>
-            <option value="4">4 / 5</option>
-            <option value="3">3 / 5</option>
-            <option value="2">2 / 5</option>
-            <option value="1">1 / 5</option>
-          </select>
-        </label>
-        <div class="flex gap-2">
-          <button onclick="addReview()" class="px-4 py-2 bg-rose-500 text-white rounded-md">Publish</button>
-          <button onclick="lockReviews()" class="px-4 py-2 border rounded-md">Lock</button>
-        </div>
-      </div>
-      <div id="review-list" class="grid gap-4"></div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="hidden max-w-5xl mx-auto p-6">
-      <h2 class="text-2xl font-semibold mb-4">Gallery</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <div class="rounded-2xl overflow-hidden shadow">
-          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop&crop=entropy" class="w-full h-48 object-cover" />
-        </div>
-        <div class="rounded-2xl overflow-hidden shadow">
-          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop&crop=entropy" class="w-full h-48 object-cover" />
-        </div>
-        <div class="rounded-2xl overflow-hidden shadow">
-          <img src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?q=80&w=1200&auto=format&fit=crop&crop=entropy" class="w-full h-48 object-cover" />
-        </div>
+    <section id="gallery" class="mb-16">
+      <h2 class="text-2xl font-bold text-rose-600 mb-6">Gallery</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Shirley_Temple_1930s.jpg/220px-Shirley_Temple_1930s.jpg" alt="Shirley Temple" class="rounded-xl shadow-lg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Shirley_Temple_in_1933.jpg/220px-Shirley_Temple_in_1933.jpg" alt="Shirley Temple" class="rounded-xl shadow-lg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Shirleytemple.jpg/220px-Shirleytemple.jpg" alt="Shirley Temple" class="rounded-xl shadow-lg">
       </div>
     </section>
 
-    <!-- Info Section -->
-    <section id="info" class="hidden max-w-5xl mx-auto p-6">
-      <h2 class="text-2xl font-semibold mb-4">About Me</h2>
-      <div class="p-4 bg-white/60 rounded-2xl shadow">
-        <p class="mb-3">Hi — this is a lighthearted place where we share short reviews of Shirley Temple mocktails. You can add a review if you know the site password.</p>
-        <p class="text-sm text-gray-700">This site stores reviews locally in your browser (localStorage).</p>
-      </div>
+    <!-- About Me Section -->
+    <section id="about" class="mb-16">
+      <h2 class="text-2xl font-bold text-rose-600 mb-6">About Me</h2>
+      <p class="text-lg leading-relaxed">Hi! I created this site to share reviews and fun content about Shirley Temples — the drink and the icon. I hope you enjoy the reviews and feel free to contribute if you know the secret password!</p>
     </section>
   </main>
 
-  <footer class="w-full border-t mt-12">
-    <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-600">Made with a friendly background • Shirley Temple Reviews</div>
-  </footer>
-
-  <!-- Password Modal -->
-  <div id="password-modal" class="hidden fixed inset-0 flex items-center justify-center bg-black/40 z-30">
-    <div class="bg-white rounded-2xl p-6 w-11/12 max-w-md">
-      <h3 class="text-lg font-semibold mb-2">Enter password to add a post</h3>
-      <input id="password-input" type="password" class="w-full p-2 border rounded-md mb-4" placeholder="Password" />
-      <div class="flex gap-2 justify-end">
-        <button onclick="closePasswordModal()" class="px-4 py-2 border rounded-md">Cancel</button>
-        <button onclick="checkPassword()" class="px-4 py-2 bg-rose-500 text-white rounded-md">Unlock</button>
+  <!-- Review Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-96">
+      <h2 class="text-xl font-bold mb-4">Add a Review</h2>
+      <textarea id="reviewInput" placeholder="Write your review..." class="w-full border rounded-lg p-3 mb-4"></textarea>
+      <div class="flex justify-end space-x-3">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">Cancel</button>
+        <button onclick="addReview()" class="px-4 py-2 rounded-lg bg-rose-500 hover:bg-rose-600 text-white">Submit</button>
       </div>
     </div>
   </div>
 
   <script>
-    const PASSWORD = "7679";
-    let authorized = false;
-
-    function showSection(id) {
-      document.querySelectorAll("main section").forEach(sec => sec.classList.add("hidden"));
-      document.getElementById(id).classList.remove("hidden");
-    }
-
-    function openPasswordModal() {
-      document.getElementById("password-modal").classList.remove("hidden");
-    }
-
-    function closePasswordModal() {
-      document.getElementById("password-modal").classList.add("hidden");
-    }
-
-    function checkPassword() {
-      const input = document.getElementById("password-input").value;
-      if (input === PASSWORD) {
-        authorized = true;
-        document.getElementById("review-form").classList.remove("hidden");
-        closePasswordModal();
-      } else {
-        alert("Incorrect password");
+    function showPasswordPrompt() {
+      const password = prompt("Enter password to add a review:");
+      if (password === "7679") {
+        document.getElementById("modal").classList.remove("hidden");
+      } else if (password !== null) {
+        alert("Incorrect password.");
       }
     }
 
-    function lockReviews() {
-      authorized = false;
-      document.getElementById("review-form").classList.add("hidden");
-    }
-
-    function loadReviews() {
-      const data = JSON.parse(localStorage.getItem("shirley_reviews_v1") || "null");
-      if (data) return data;
-      const seeded = [
-        { title: "Classic and refreshing", body: "Sweet, bright, and nostalgic.", rating: 5, date: new Date().toISOString() },
-        { title: "Too sweet for me", body: "I prefer less grenadine — very sugary but fun.", rating: 3, date: new Date().toISOString() }
-      ];
-      localStorage.setItem("shirley_reviews_v1", JSON.stringify(seeded));
-      return seeded;
-    }
-
-    function saveReviews(reviews) {
-      localStorage.setItem("shirley_reviews_v1", JSON.stringify(reviews));
-    }
-
-    function renderReviews() {
-      const reviews = loadReviews();
-      const list = document.getElementById("review-list");
-      list.innerHTML = "";
-      reviews.forEach(r => {
-        const el = document.createElement("article");
-        el.className = "p-4 bg-white/60 rounded-2xl shadow";
-        el.innerHTML = `
-          <div class="flex items-center justify-between mb-1">
-            <h4 class="font-semibold">${r.title}</h4>
-            <div class="text-sm text-gray-600">${new Date(r.date).toLocaleString()}</div>
-          </div>
-          <div class="text-sm text-rose-600 mb-2">Rating: ${r.rating} / 5</div>
-          <p class="text-gray-800">${r.body}</p>`;
-        list.appendChild(el);
-      });
-      document.getElementById("review-count").innerText = `${reviews.length} review(s)`;
+    function closeModal() {
+      document.getElementById("modal").classList.add("hidden");
     }
 
     function addReview() {
-      const title = document.getElementById("title").value.trim();
-      const body = document.getElementById("body").value.trim();
-      const rating = document.getElementById("rating").value;
-      if (!title || !body) { alert("Please fill out all fields"); return; }
-      const reviews = loadReviews();
-      reviews.unshift({ title, body, rating, date: new Date().toISOString() });
-      saveReviews(reviews);
-      renderReviews();
-      document.getElementById("title").value = "";
-      document.getElementById("body").value = "";
-      document.getElementById("rating").value = 5;
+      const reviewText = document.getElementById("reviewInput").value.trim();
+      if (reviewText) {
+        const reviewElement = document.createElement("div");
+        reviewElement.className = "p-4 bg-white rounded-xl shadow-md border";
+        reviewElement.textContent = reviewText;
+        document.getElementById("reviewsList").appendChild(reviewElement);
+        document.getElementById("reviewInput").value = "";
+        closeModal();
+      }
     }
-
-    renderReviews();
   </script>
 </body>
 </html>
