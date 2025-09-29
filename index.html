@@ -13,43 +13,22 @@
       <h1 class="text-3xl font-bold">Shirley Temple Reviews</h1>
       <nav class="mt-4 md:mt-0">
         <ul class="flex space-x-6 text-lg">
-          <li><a href="#reviews" class="hover:underline">Reviews</a></li>
-          <li><a href="#gallery" class="hover:underline">Gallery</a></li>
-          <li><a href="#about" class="hover:underline">About Me</a></li>
+          <li><a href="index.html" class="hover:underline font-bold">Reviews</a></li>
+          <li><a href="gallery.html" class="hover:underline">Gallery</a></li>
+          <li><a href="about.html" class="hover:underline">About Me</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main class="container mx-auto py-12 px-6">
-    <!-- Reviews Section -->
-    <section id="reviews" class="mb-16">
-      <h2 class="text-2xl font-bold text-rose-600 mb-6">Reviews</h2>
-      <div id="reviewsList" class="grid gap-6"></div>
-      <div class="mt-6">
-        <button onclick="showPasswordPrompt()" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl shadow-md">
-          Add Review
-        </button>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="mb-16">
-      <h2 class="text-2xl font-bold text-rose-600 mb-6">Gallery</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Shirley_Temple_1930s.jpg/220px-Shirley_Temple_1930s.jpg" alt="Shirley Temple" class="rounded-xl shadow-lg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Shirley_Temple_in_1933.jpg/220px-Shirley_Temple_in_1933.jpg" alt="Shirley Temple" class="rounded-xl shadow-lg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Shirleytemple.jpg/220px-Shirleytemple.jpg" alt="Shirley Temple" class="rounded-xl shadow-lg">
-      </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="mb-16">
-      <h2 class="text-2xl font-bold text-rose-600 mb-6">About Me</h2>
-      <p class="text-lg leading-relaxed">
-        I am an 8th grader at Dexter Southfield who had to do an assignment.
-      </p>
-    </section>
+    <h2 class="text-2xl font-bold text-rose-600 mb-6">Reviews</h2>
+    <div id="reviewsList" class="grid gap-6"></div>
+    <div class="mt-6">
+      <button onclick="showPasswordPrompt()" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl shadow-md">
+        Add Review
+      </button>
+    </div>
   </main>
 
   <!-- Review Modal -->
@@ -65,7 +44,6 @@
   </div>
 
   <script>
-    // Load reviews from localStorage on page load
     window.addEventListener("DOMContentLoaded", () => {
       const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
       const reviewsList = document.getElementById("reviewsList");
@@ -99,7 +77,6 @@
         reviewElement.textContent = reviewText;
         document.getElementById("reviewsList").appendChild(reviewElement);
 
-        // Save to localStorage
         const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
         savedReviews.push(reviewText);
         localStorage.setItem("reviews", JSON.stringify(savedReviews));
