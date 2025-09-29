@@ -1,101 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shirley Temple Gallery</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #fff8f0;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        background-color: #ffb6b9;
-        padding: 20px;
-        text-align: center;
-        font-size: 2em;
-        color: #fff;
-    }
-    .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
-        gap: 20px;
-    }
-    .gallery img {
-        width: 250px;
-        height: 350px;
-        object-fit: cover;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
-    .gallery img:hover {
-        transform: scale(1.05);
-    }
-    /* Lightbox styles */
-    .lightbox {
-        display: none;
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.8);
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        z-index: 1000;
-    }
-    .lightbox img {
-        max-width: 80%;
-        max-height: 80%;
-        border-radius: 10px;
-    }
-    .close-btn {
-        color: #fff;
-        font-size: 2em;
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-</style>
+    <meta charset="UTF-8">
+    <title>Shirley Temple Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8f0; /* friendly background */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #ff9999;
+            padding: 10px 0;
+        }
+        nav a {
+            margin: 0 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="reviews.html">Reviews</a>
+        <a href="about.html">About Me</a>
+        <a href="gallery.html">Gallery</a>
+    </nav>
 
-<header>Shirley Temple Gallery</header>
+    <h1>Shirley Temple Gallery</h1>
 
-<div class="gallery">
-    <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-07f0-61f5-8f0f-5580da3b93ae/raw?se=2025-09-29T18%3A32%3A32Z&sp=r&sv=2024-08-04&sr=b&scid=2c6994c8-e5ff-5327-93ca-2436d6a30135&skoid=0da8417a-a4c3-4a19-9b05-b82cee9d8868&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-29T13%3A58%3A53Z&ske=2025-09-30T13%3A58%3A53Z&sks=b&skv=2024-08-04&sig=IlJYvDMp1C/USjtAVjO7%2Bob8jXrUYYOF5P0YauanceM%3D" alt="Shirley Temple 1">
-    <img src="data:image/jpeg;base64,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" alt="Shirley Temple 2">
-    <img src="https://bellyfull.net/wp-content/uploads/2022/02/Dirty-Shirley-2.jpg" alt="Shirley Temple 3">
-</div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shirley Temple Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8f0; /* friendly background */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #ff9999;
+            padding: 10px 0;
+        }
+        nav a {
+            margin: 0 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="reviews.html">Reviews</a>
+        <a href="about.html">About Me</a>
+        <a href="gallery.html">Gallery</a>
+    </nav>
 
-<div class="lightbox" id="lightbox">
-    <span class="close-btn" id="closeBtn">&times;</span>
-    <img src="" alt="Expanded Shirley Temple">
-</div>
+    <h1>Shirley Temple Gallery</h1>
 
-<script>
-    const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const closeBtn = document.getElementById('closeBtn');
-
-    images.forEach(img => {
-        img.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src;
-        });
-    });
-
-    closeBtn.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
-</script>
-
+    <div class="gallery">
+        <img src="images/shirley1.jpg" alt="Shirley Temple 1">
+        <img src="images/shirley2.jpg" alt="Shirley Temple 2">
+        <img src="images/shirley3.jpg" alt="Shirley Temple 3">
+    </div>
 </body>
 </html>
