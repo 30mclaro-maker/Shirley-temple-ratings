@@ -6,18 +6,17 @@
   <title>Shirley Temple Reviews</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-pink-200 via-rose-100 to-red-200 min-h-screen font-sans text-gray-800">
-  <header class="bg-rose-500 text-white shadow-lg">
-    <div class="container mx-auto flex justify-between items-center p-6">
-      <h1 class="text-3xl font-bold">Shirley Temple Reviews</h1>
-      <nav>
-        <ul class="flex space-x-6 text-lg">
-          <li><a href="#reviews" class="hover:underline">Reviews</a></li>
-          <li><a href="#gallery" class="hover:underline">Gallery</a></li>
-          <li><a href="#about" class="hover:underline">About Me</a></li>
-        </ul>
-      </nav>
-    </div>
+<body class="bg-rose-50 text-gray-800">
+
+  <header class="bg-white shadow-md p-6">
+    <h1 class="text-3xl font-bold">Shirley Temple Reviews</h1>
+    <nav>
+      <ul class="flex space-x-6 text-lg mt-2">
+        <li><a href="#reviews" class="hover:underline">Reviews</a></li>
+        <li><a href="#gallery" class="hover:underline">Gallery</a></li>
+        <li><a href="#about" class="hover:underline">About Me</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main class="container mx-auto py-12 px-6">
@@ -26,7 +25,9 @@
       <h2 class="text-2xl font-bold text-rose-600 mb-6">Reviews</h2>
       <div id="reviewsList" class="grid gap-6"></div>
       <div class="mt-6">
-        <button onclick="showPasswordPrompt()" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl shadow-md">Add Review</button>
+        <button onclick="showPasswordPrompt()" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl shadow-md">
+          Add Review
+        </button>
       </div>
     </section>
 
@@ -43,7 +44,9 @@
     <!-- About Me Section -->
     <section id="about" class="mb-16">
       <h2 class="text-2xl font-bold text-rose-600 mb-6">About Me</h2>
-      <p class="text-lg leading-relaxed">Hi! I created this site to share reviews and fun content about Shirley Temples — the drink and the icon. I hope you enjoy the reviews and feel free to contribute if you know the secret password!</p>
+      <p class="text-lg leading-relaxed">
+        I am an 8th grader at Dexter Southfield who had to do an assignment.
+      </p>
     </section>
   </main>
 
@@ -60,6 +63,18 @@
   </div>
 
   <script>
+    // Load reviews from localStorage on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      const reviewsList = document.getElementById("reviewsList");
+      savedReviews.forEach(text => {
+        const reviewElement = document.createElement("div");
+        reviewElement.className = "p-4 bg-white rounded-xl shadow-md border";
+        reviewElement.textContent = text;
+        reviewsList.appendChild(reviewElement);
+      });
+    });
+
     function showPasswordPrompt() {
       const password = prompt("Enter password to add a review:");
       if (password === "7679") {
@@ -74,16 +89,24 @@
     }
 
     function addReview() {
-      const reviewText = document.getElementById("reviewInput").value.trim();
+      const reviewInput = document.getElementById("reviewInput");
+      const reviewText = reviewInput.value.trim();
       if (reviewText) {
         const reviewElement = document.createElement("div");
         reviewElement.className = "p-4 bg-white rounded-xl shadow-md border";
         reviewElement.textContent = reviewText;
         document.getElementById("reviewsList").appendChild(reviewElement);
-        document.getElementById("reviewInput").value = "";
+
+        // Save to localStorage
+        const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+        savedReviews.push(reviewText);
+        localStorage.setItem("reviews", JSON.stringify(savedReviews));
+
+        reviewInput.value = "";
         closeModal();
       }
     }
   </script>
+
 </body>
 </html>
